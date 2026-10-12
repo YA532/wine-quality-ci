@@ -9,7 +9,7 @@ def prepare_data(data):
     data = data.dropna()
 
     X = data.drop(columns=["quality", "Id"], errors="ignore")
-    y = data["wrong_column"]
+    y = data["quality"]
 
     return X, y
 
