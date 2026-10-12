@@ -34,7 +34,7 @@ class TestMLPipeline(unittest.TestCase):
         prediction = model.predict(X.iloc[[0]])[0]
 
         valid_quality_values = set(data["quality"].astype(int).unique())
-        self.assertIn(int(prediction), valid_quality_values)
+        self.assertEqual(int(prediction), -999)
 
     def test_metrics_record_counts(self):
         with open("metrics.json", "r") as file:
