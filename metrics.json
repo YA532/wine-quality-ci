@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.6768558951965066,
+  "f1_weighted": 0.6702855257059174,
+  "test_rows": 229,
+  "features": [
+    "fixed acidity",
+    "volatile acidity",
+    "citric acid",
+    "residual sugar",
+    "chlorides",
+    "free sulfur dioxide",
+    "total sulfur dioxide",
+    "density",
+    "pH",
+    "sulphates",
+    "alcohol"
+  ],
+  "quality_gate_accuracy": 0.55
+}
