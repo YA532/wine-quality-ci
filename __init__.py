@@ -1,2 +1,1 @@
-"""Wine quality prediction service."""
-
+"""Training and data quality entry points."""
