@@ -1,0 +1,2 @@
+"""Wine quality prediction service."""
+
