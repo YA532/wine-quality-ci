@@ -1,9 +1,2 @@
-.venv/
-__pycache__/
-.pytest_cache/
-*.pyc
-.env
-artifacts/*.joblib
-artifacts/*.json
-drift_reports/
-
+# Created by pytest automatically.
+*
