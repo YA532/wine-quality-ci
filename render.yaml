@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: wine-quality-api
+    env: docker
+    healthCheckPath: /health
+    envVars:
+      - key: LOG_LEVEL
+        value: INFO
+      - key: SENTRY_DSN
+        sync: false
+
