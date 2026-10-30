@@ -1,0 +1,5 @@
+[
+  "tests/test_api.py::test_health_and_prediction",
+  "tests/test_api.py::test_prediction_rejects_missing_feature",
+  "tests/test_training.py::test_training_produces_quality_gate_metrics"
+]
