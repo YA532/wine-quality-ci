@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wine-quality-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wine-quality-api
+  template:
+    metadata:
+      labels:
+        app: wine-quality-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/OWNER/wine-quality-api:latest
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: wine-quality-config
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+

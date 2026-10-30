@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wine-quality-config
+data:
+  LOG_LEVEL: INFO
+
