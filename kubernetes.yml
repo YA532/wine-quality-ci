@@ -1,0 +1,29 @@
+name: Deploy to Kubernetes
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build, Test, and Publish Container"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-kubectl@v4
+      - name: Configure cluster
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+        run: |
+          mkdir -p "$HOME/.kube"
+          echo "$KUBE_CONFIG" | base64 --decode > "$HOME/.kube/config"
+      - run: sed -i "s#ghcr.io/OWNER/wine-quality-api#ghcr.io/${{ github.repository_owner }}/wine-quality-api:sha-${{ github.sha }}#" k8s/deployment.yaml
+      - run: kubectl apply -f k8s/
+      - run: kubectl rollout status deployment/wine-quality-api --timeout=180s
+
